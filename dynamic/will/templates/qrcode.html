@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Payment QR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 450px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #444;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0d47a1;
+        }
+        .qr-card {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .qr-card img {
+            margin: 20px 0;
+            width: 220px;
+            height: 220px;
+        }
+        .details {
+            text-align: left;
+            margin-top: 10px;
+        }
+        .details p {
+            margin: 6px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        .amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        .btn-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: #1976d2;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        .btn-link:hover {
+            background: #0d47a1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Generate UPI Payment QR</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label>UPI ID</label>
+            <input type="text" name="upi_id" placeholder="example@upi" required>
+
+            <label>Name</label>
+            <input type="text" name="name" placeholder="John Doe" required>
+
+            <label>Amount (₹)</label>
+            <input type="number" name="amount" placeholder="5000" required>
+
+            <label>Note</label>
+            <input type="text" name="note" placeholder="Payment for services">
+
+            <button type="submit">Generate QR</button>
+        </form>
+
+        {% if qr_image %}
+        <div class="qr-card">
+            <h3>First Generate Then Scan to Pay</h3>
+            <img src="data:image/png;base64,{{ qr_image }}" alt="UPI Payment QR">
+            <div class="details">
+                <p><strong>UPI ID:</strong> {{ upi_id }}</p>
+                <p><strong>Name:</strong> {{ name }}</p>
+                <p class="amount">Amount: ₹{{ amount }}</p>
+                <p><strong>Note:</strong> {{ note }}</p>
+            </div>
+            
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
