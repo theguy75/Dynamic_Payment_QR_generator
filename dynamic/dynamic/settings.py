@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://dynamic-payment-qr-generator.onrender.com',
+    'https://mycustomdomain.com'
+]
+
 
 # Application definition
 
