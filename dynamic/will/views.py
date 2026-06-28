@@ -5,6 +5,10 @@ import base64
 
 def generate_qr(request):
     qr_image = None
+    upi_id = None
+    name = None
+    amount = None
+    note = None
     if request.method == "POST":
         upi_id = request.POST.get("upi_id")
         name = request.POST.get("name")
