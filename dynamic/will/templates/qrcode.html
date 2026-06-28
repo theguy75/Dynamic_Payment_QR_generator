@@ -121,6 +121,10 @@
                 <p class="amount">Amount: ₹{{ amount }}</p>
                 <p><strong>Note:</strong> {{ note }}</p>
             </div>
+            <a href="upi://pay?pa={{ upi_id }}&pn={{ name }}&am={{ amount }}&cu=INR&tn={{ note }}" 
+       class="btn-link">
+       Pay Now
+    </a>
             
         </div>
         {% endif %}
