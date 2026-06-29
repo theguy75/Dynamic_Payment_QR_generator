@@ -21,7 +21,8 @@ Users can enter their UPI ID, name, amount, and note in the frontend, and the ba
 - **Database:** SQLite (default Django setup, can be swapped)
 
 ---
-
+## LIVE LINK  
+ -**https://dynamic-payment-qr-generator.onrender.com
 ## 📦 Installation
 
 1. Clone the repository:
